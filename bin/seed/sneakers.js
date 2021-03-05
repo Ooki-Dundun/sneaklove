@@ -8,8 +8,7 @@ const sneakersData = [
         size: 47,
         description: "running shoes",
         price: 123,
-        category: "men",
-        id_tags: ["6041ff451f1b4372ac2e305f"]
+        category: "men"
     },
     {
         name: "killer shark women",
@@ -17,8 +16,7 @@ const sneakersData = [
         size: 37,
         description: "running shoes",
         price: 123,
-        category: "woem",
-        id_tags: ["6041ff451f1b4372ac2e305f"]
+        category: "women"
     },
     {
         name: "killer shark kids",
@@ -26,8 +24,7 @@ const sneakersData = [
         size: 15,
         description: "running shoes",
         price: 87,
-        category: "kids",
-        id_tags: ["6041ff451f1b4372ac2e305f"]
+        category: "kids"
     },
 ]
 

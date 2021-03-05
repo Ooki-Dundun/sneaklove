@@ -1,25 +1,41 @@
 const express = require("express");
+const { NotExtended } = require("http-errors");
 const router = express.Router();
+const Sneaker = require("../models/Sneaker");
 
-router.get("/", (req, res) => {
+router.get("/", (req, res, next) => {
   res.render("../views/index.hbs");
 });
 
-router.get("/sneakers/:cat", (req, res) => {
-  res.send("yo");
+router.get("/sneakers/collection", (req, res, next) => {
+  Sneaker.find()
+  .then((sneakers) => res.render("../views/products.hbs", {sneakers}))
+  .catch( (err) => next(err))
 });
 
-router.get("/one-product/:id", (req, res) => {
-  res.send("baz");
+router.get("/sneakers/men", (req, res, next) => {
+  Sneaker.find({category: "men"})
+  .then((sneakers) => res.render("../views/products.hbs", {sneakers}))
+  .catch( (err) => next(err))
 });
 
-router.get("/signup", (req, res) => {
-  res.send("sneak");
+router.get("/sneakers/women", (req, res, next) => {
+  Sneaker.find({category: "women"})
+  .then((sneakers) => res.render("../views/products.hbs", {sneakers}))
+  .catch( (err) => next(err))
 });
 
-router.get("/signin", (req, res) => {
-  res.send("love");
+router.get("/sneakers/kids", (req, res, next) => {
+  Sneaker.find({category: "kids"})
+  .then((sneakers) => res.render("../views/products.hbs", {sneakers}))
+  .catch( (err) => next(err))
 });
 
+
+router.get("/one-product/:id", (req, res, next) => {
+  Sneaker.findById(`${id}`)
+  .then(sneaker => res.send(sneaker))
+  .catch(err => next(err));
+});
 
 module.exports = router;

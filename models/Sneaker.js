@@ -11,7 +11,7 @@ const sneakerSchema = new Schema ({
         type: String,
         emum: [ "men", "women", "kids"]
     },
-    id_tags: [{ type: Schema.Types.ObjectId, ref: "tags" }]
+    idTags: [{ type: Schema.Types.ObjectId, ref: "tags" }]
 });
 
 const Sneaker = mongoose.model('sneakers', sneakerSchema);
