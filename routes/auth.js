@@ -35,8 +35,30 @@ router.get("/signin", (req, res, next) => {
     res.render("../views/signin.hbs")
 });
 
-router.post("/signin", (req, res, next) => {
-
+router.post("/signinnow", (req, res, next) => {
+    const { email, password } = req.body;
+    console.log(req.body.password);
+    User.findOne({email: email})
+    .then((user) => {
+        if (!user) {
+            req.flash("error", "Invalid credentials");
+            res.redirect("/auth/signin");
+        } else {
+            console.log(password, user.password);
+            const isSamePassword = bcrypt.compareSync(password, user.password);
+            if(!isSamePassword) {
+                req.flash("error", "Invalid credentials");
+                res.redirect("/auth/signin");
+            } else {
+                const userObject = user.toObject();
+                delete userObject.password;
+                req.session.currentUser = userObject;
+                req.flash("success", "Successfully logged in...");
+                res.redirect("/");
+            }
+        }
+    })
+    .catch(err => next(err));
 })
 
 module.exports = router;
