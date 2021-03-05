@@ -1,20 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-return console.log(`\n\n
------------------------------
------------------------------
-     wax on / wax off !
------------------------------
------------------------------\n\n`
-);
-
 router.get("/", (req, res) => {
-  res.send("foo");
+  res.render("../views/index.hbs");
 });
 
 router.get("/sneakers/:cat", (req, res) => {
-  res.send("bar");
+  res.send("yo");
 });
 
 router.get("/one-product/:id", (req, res) => {
